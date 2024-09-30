@@ -2,10 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: createMovieTable
       author: kedarnath
-      preConditions:
-        - not:
-            - tableExists:
-                tableName: movie
       changes:
         - createTable:
             tableName: movie
@@ -22,28 +18,67 @@ databaseChangeLog:
                   type: VARCHAR(200)
                   constraints:
                     nullable: false
-                    unique: false
+                    unique: true
               - column:
                   name: director
                   type: VARCHAR(200)
                   constraints:
                     nullable: false
-                    unique: false
               - column:
                   name: studio
                   type: VARCHAR(200)
                   constraints:
                     nullable: false
-                    unique: false
               - column:
                   name: release_year
                   type: INT
                   constraints:
                     nullable: false
-                    unique: false
               - column:
                   name: poster
                   type: VARCHAR(200)
                   constraints:
                     nullable: false
                     unique: true
+
+        - createTable:
+            tableName: movie_cast
+            columns:
+              - column:
+                  name: cast_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: movie_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cast_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: movie_cast
+            baseColumnNames: movie_id
+            referencedTableName: movie
+            referencedColumnNames: movie_id
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            deferrable: true
+            initiallyDeferred: true
+            constraintName: fk_movie_cast_movie_id
+
+        - addUniqueConstraint:
+            tableName: movie
+            columnNames: title
+            constraintName: unique_movie_title
+
+        - addUniqueConstraint:
+            tableName: movie
+            columnNames: poster
+            constraintName: unique_movie_poster

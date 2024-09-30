@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: dropUserUserIdColumn
+      author: kedarnath
+      changes:
+        - dropColumn:
+            tableName: refresh_token
+            columnName: user_user_id

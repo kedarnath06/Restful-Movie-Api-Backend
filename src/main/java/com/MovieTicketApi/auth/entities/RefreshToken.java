@@ -28,5 +28,6 @@ public class RefreshToken {
     private Instant expirationTime;
 
     @OneToOne
+    @JoinColumn(name = "user_id") // Specify the foreign key column name
     private User user;
 }

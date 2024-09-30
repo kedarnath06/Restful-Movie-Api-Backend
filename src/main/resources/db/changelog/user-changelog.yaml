@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 2
+      id: createUserTable
       author: kedarnath
       changes:
         - createTable:
@@ -15,19 +15,21 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: name
-                  type: VARCHAR(100)
+                  type: VARCHAR(255)
                   constraints:
                     nullable: false
               - column:
                   name: username
-                  type: VARCHAR(100)
+                  type: VARCHAR(255)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: email
-                  type: VARCHAR(100)
+                  type: VARCHAR(255)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: password
                   type: VARCHAR(255)
@@ -35,6 +37,16 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: role
-                  type: VARCHAR(20)
+                  type: VARCHAR(50)
                   constraints:
                     nullable: false
+
+        - addUniqueConstraint:
+            tableName: users
+            columnNames: username
+            constraintName: unique_user_username
+
+        - addUniqueConstraint:
+            tableName: users
+            columnNames: email
+            constraintName: unique_user_email

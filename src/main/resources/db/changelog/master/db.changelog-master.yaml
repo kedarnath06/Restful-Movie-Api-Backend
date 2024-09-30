@@ -6,4 +6,5 @@ databaseChangeLog:
   - include:
       file: classpath:/db/changelog/refresh-token-changelog.yaml
   - include:
-      file: classpath:/db/changelog/movie-cast-changelog.yaml
+      file: classpath:/db/changelog/drop-user-userId-column-from-refresh-token-changelog.yaml
+
