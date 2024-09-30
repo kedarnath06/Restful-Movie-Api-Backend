@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: classpath:/db/changelog/movie-changelog.yaml
+  - include:
+      file: classpath:/db/changelog/user-changelog.yaml
+  - include:
+      file: classpath:/db/changelog/refresh-token-changelog.yaml
+  - include:
+      file: classpath:/db/changelog/movie-cast-changelog.yaml

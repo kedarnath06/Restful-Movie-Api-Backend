@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: createMovieTable
+      author: kedarnath
+      preConditions:
+        - not:
+            - tableExists:
+                tableName: movie
+      changes:
+        - createTable:
+            tableName: movie
+            columns:
+              - column:
+                  name: movie_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+                    unique: false
+              - column:
+                  name: director
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+                    unique: false
+              - column:
+                  name: studio
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+                    unique: false
+              - column:
+                  name: release_year
+                  type: INT
+                  constraints:
+                    nullable: false
+                    unique: false
+              - column:
+                  name: poster
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+                    unique: true
