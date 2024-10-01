@@ -36,7 +36,8 @@ public class Movie {
     private Integer releaseYear;
 
     @ElementCollection
-    @CollectionTable(name = "movie_cast")
+    @CollectionTable(name = "movie_cast", joinColumns = @JoinColumn(name = "movie_id"))
+    @Column(name = "cast_name")
     private Set<String> movieCast;
 
     @Column(nullable = false, length = 200)
