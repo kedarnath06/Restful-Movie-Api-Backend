@@ -43,10 +43,8 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user")
     private RefreshToken refreshToken;
 
-
     @Enumerated(EnumType.STRING)
     private UserRole role;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
